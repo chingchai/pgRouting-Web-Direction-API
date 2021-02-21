@@ -24,6 +24,12 @@ A complete solution of pgRouting direction Web API written in Node js (Javascrip
  * http://localhost:3000/route?start=3078473.56,8206254.21&end=2780495.14,8423917.64
  * http://localhost:3000/closest?lat=3078473.56&lng=8206254.21&buffer=3000000&limit=1
  * http://localhost:3000/distance?start=3078473.56,8206254.21&end=2780495.14,8423917.64
+
+ * http://localhost:3000/api/v1
+ * http://localhost:3000/api/v1/route?start=99.99537,6.81322&end=100.00850,6.81125
+ * http://localhost:3000/api/v1/distance?start=99.99537,6.81322&end=100.00850,6.81125
+ * http://localhost:3000/api/v1/closest?lat=100.00855&lng=6.81122&buffer=1000&limit=1
+ * http://localhost:3000/api/v1/topo
  
  
 App is underdevelopment:
