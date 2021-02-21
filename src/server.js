@@ -24,45 +24,81 @@ app.use(cors({
 // }));
 // app.use(webpackHotMiddleware(compiler));
 
-app.get('/', (req, res) => {
+app.get('/api/v1', (req, res) => {
   res.send('Welcome to PG Routing API Written in Node JS Express!');
 });
 
-app.get('/route', (req, res, next) => {
+app.get('/api/v1/route', async (req, res, next) => {
 
   const { start, end } = req.query;
   console.log(start);
-  routing.route(start, end)
+  console.log(end);
+  // routing.route(start, end)
+  //   .then((result) => {
+  //     res.status(200).json(result);
+  //   })
+  //   .catch((reason) => {
+  //     res.status(500).json(reason);
+  //   });
+  var r;
+  var s;
+  await routing.route(start, end)
     .then((result) => {
-      res.status(200).json(result);
+      r = result
     })
-    .catch((reason) => {
-      res.status(500).json(reason);
-    });
+  await routing.routesum(start, end)
+    .then((result) => {
+      s = result
+    })
+  res.status(200).json({
+    status: "success",
+    massage: "get route",
+    waypoints: { start, end },
+    routes: r,
+    distance: s
+  });
 });
 
-app.get('/distance', (req, res, next) => {
+app.get('/api/v1/distance', (req, res, next) => {
   const { start, end } = req.query;
   routing.distance(start, end)
     .then((result) => {
-      res.status(200).json(result);
+      res.status(200).json({
+        status: "success",
+        massage: "get distance",
+        waypoints: { start, end },
+        result: result
+      });
     })
     .catch((reason) => {
       res.status(500).json(reason);
     });
 });
 
-app.get('/closest', (req, res, next) => {
-  const { lat, lng } = req.query;
-  const buffer = values.buffer || 1;
-  const limit = values.limit || 1;
+app.get('/api/v1/closest', (req, res, next) => {
+  const { lat, lng, buffer, limit } = req.query;
+  //const buffer = values.buffer || 1;
+  //const limit = values.limit || 1;
   routing.closest(lat, lng, buffer, limit)
     .then((result) => {
-      res.status(200).json(result);
+      res.status(200).json({
+        status: "success",
+        massage: "get closest",
+        waypoints: { lat, lng, buffer, limit },
+        result: result
+      });
     })
     .catch((reason) => {
       res.status(500).json(reason);
     });
 });
+
+app.get('/api/v1/topo', (req, res) => {
+  routing.createTopology().then(() => {
+    res.status(200).json({
+      status: "success"
+    });
+  })
+})
 
 app.listen(exp_config.port, () => console.log(`app listening on port ${exp_config.port}!`));
