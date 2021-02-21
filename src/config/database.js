@@ -12,13 +12,14 @@ const config_connection = {
   idleTimeoutMillis: config_db.idleTimeoutMillis,
   connectionTimeoutMillis: config_db.connectionTimeoutMillis,
 };
+//console.log("host: ", config_connection)
 
 // initializing connection pool according to the config setup
 const pool = new pg.Pool(config_connection);
 
 // check the connection
 const connect = function (callback) {
-  pool.connect((err, client, release) => {
+  pool.connect((err, client, release) => {  
     if (err) {
       return console.error('Error acquiring client', err.stack)
     }
