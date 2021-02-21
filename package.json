@@ -23,12 +23,13 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fb-watchman": "^2.0.0",
-    "graphql": "^14.5.4",
-    "pg": "^7.12.0"
+    "graphql": "^15.5.0",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@types/pg": "^7.14.10",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "nodemon": "^1.19.1",
