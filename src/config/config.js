@@ -1,10 +1,10 @@
 // setup your server and database
 
 const host = 'localhost'; // localhost
-const port = 5434; // env variable: PGPORT or setup here
-const username = 'postgres'; // env variable: PGUSER or setup here
+const port = 5432; // env variable: PGPORT or setup here
+const username = 'chingchaih'; // env variable: PGUSER or setup here
 const password = 'postgres'; // env variable: PGPASSWORD or setup here
-const database = 'pgrouting_new'; // env variable: PGDATABASE or setup here
+const database = 'postgis'; // env variable: PGDATABASE or setup here
 const ssl = false; // setup ssl for database
 const max_client = 500; // max number of clients in the pool
 // how long a client is allowed to remain idle before being closed
